@@ -1,0 +1,3 @@
+ldap:
+  url: "http://ldap.test"
+  

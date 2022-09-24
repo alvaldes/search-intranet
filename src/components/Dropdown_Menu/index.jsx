@@ -1,11 +1,11 @@
 import React from "react";
-import clases from "./Dropdown.module.css";
+import "./style.module.css";
 
 const Dropdown_Menu = ({ title, items }) => {
   return (
     <div className="group inline-block">
       <button className="flex items-center min-w-32">
-        <span className="whitespace-nowrap flex-1 hover:text-green">
+        <span className="whitespace-nowrap flex-1 hover:text-green-light">
           {title}
         </span>
         <span>
@@ -26,7 +26,7 @@ const Dropdown_Menu = ({ title, items }) => {
         {items.map((item) => {
           return (
             <li
-              className="rounded-sm whitespace-nowrap cursor-pointer px-3 py-1 hover:bg-gray-100 hover:text-green"
+              className="rounded-sm whitespace-nowrap cursor-pointer px-3 py-1 hover:bg-gray-100 hover:text-green-light"
               key={item}
             >
               {item}
