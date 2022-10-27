@@ -10,7 +10,7 @@ const Header = () => {
         <a href="/" alt="logo">
           <img
             className="mr-auto h-8"
-            src="./logo.png"
+            src="./logo512.png"
             alt="logo"
             loading="eager"
           />
@@ -65,7 +65,7 @@ const Header = () => {
         <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
           <div className="flex items-center mb-8">
             <a className="mr-auto text-3xl font-bold leading-none" href="/">
-              <img className="h-12" alt="logo" src="./logo.png" />
+              <img className="h-12" alt="logo" src="./logo512.png" />
             </a>
             <button className="navbar-close" onClick={() => setOpen(false)}>
               <svg
@@ -76,9 +76,9 @@ const Header = () => {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 ></path>
               </svg>

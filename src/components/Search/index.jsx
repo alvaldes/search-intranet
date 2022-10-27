@@ -1,8 +1,8 @@
 import React from "react";
 
-const Search = () => {
+const Search = ({ onChange, children }) => {
   return (
-    <div className="flex items-center mb-4 px-3 md:px-0">
+    <div className="flex items-center mb-4 px-3 md:px-0 flex-col md:flex-row">
       <label htmlFor="simple-search" className="sr-only">
         Search
       </label>
@@ -26,29 +26,10 @@ const Search = () => {
           id="simple-search"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
           placeholder="Search"
-          required
+          onChange={(e) => onChange(e.target.value)}
         />
       </div>
-      <button
-        type="submit"
-        className="flex flex-nowrap p-2.5 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
-      >
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          ></path>
-        </svg>
-        Buscar
-      </button>
+      {children}
     </div>
   );
 };

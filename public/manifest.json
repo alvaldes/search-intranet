@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Buscador Intranet",
+  "name": "Buscador de personas de la CUJAE",
   "icons": [
     {
       "src": "favicon.ico",

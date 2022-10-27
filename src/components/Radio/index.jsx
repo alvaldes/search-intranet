@@ -1,3 +1,5 @@
+import React from "react";
+
 const Radio = ({ value, id, checked, onClick }) => {
   return (
     <div className="flex items-center w-24 p-1">
@@ -14,7 +16,7 @@ const Radio = ({ value, id, checked, onClick }) => {
       />
       <label
         htmlFor={id}
-        className="text-sm whitespace-nowrap font-medium text-gray-900 ml-2 block"
+        className="text-sm whitespace-nowrap font-medium text-gray-900 ml-2 block select-none"
       >
         {value}
       </label>
