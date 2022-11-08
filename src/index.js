@@ -1,22 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
-import { CookiesProvider } from "react-cookie";
-// import { AuthProvider } from "./context/AuthProvider";
+import { SearchContextProvider } from "./context/SearchContext";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <CookiesProvider>
-        {/* <AuthProvider> */}
-        <App />
-        {/* </AuthProvider> */}
-      </CookiesProvider>
-    </BrowserRouter>
+    <SearchContextProvider>
+      <App />
+    </SearchContextProvider>
   </React.StrictMode>
 );
 

@@ -11,8 +11,8 @@ const Dropdown = ({ label, options, value, onChange, clases, isrequired }) => {
         required={isrequired}
       >
         {options.map((option) => (
-          <option value={option.value} key={option.value} className="w-50">
-            {option.label}
+          <option value={option.name} key={option.name} className="w-50">
+            {option.name}
           </option>
         ))}
       </select>
