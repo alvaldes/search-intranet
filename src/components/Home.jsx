@@ -1,50 +1,24 @@
-import { useState, useEffect, useContext } from "react";
-import SearchContext from "../context/SearchContext";
-import HomeSkeleton from "./HomeSkeleton";
-import Header from "./Header";
-import Search from "./Search";
-import RadioBtn from "./RadioBtn";
-import Dropdown from "./Dropdown";
-import Table from "./Table";
-import * as api_ldap from "../api/api_ldap";
+import { useContext, useEffect, useState } from 'react';
+import * as api_ldap from '../api/api_ldap';
+import SearchContext from '../context/SearchContext';
+import Dropdown from './Dropdown';
+import Header from './Header';
+import HomeSkeleton from './HomeSkeleton';
+import RadioBtn from './RadioBtn';
+import Search from './Search';
+import Table from './Table';
 
 const Home = () => {
   const searchCtx = useContext(SearchContext);
   const [showTable, setShowTable] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("ci");
+  const [selectedOption, setSelectedOption] = useState('ci');
   const [areas, setAreas] = useState(null);
-  const [areaOption, setAreaOption] = useState("Selecione un Área");
-  const [searchQuery, setSearchQuery] = useState("");
-  // const [provinciaOption, setProvinciaOption] = useState(0);
-  // const [municipioOption, setMunicipioOption] = useState(0);
-  // const [userTypeOption, setUserTypeOption] = useState("all");
-  // const [municipios, setMunicipios] = useState([]);
-  // const [provincias, setProvincias] = useState([]);
-
-  // useEffect(() => {
-  // if (provincias.length === 0) {
-  //   let aux = Region.map((p) => {
-  //     return { label: p.nombre, value: p.id };
-  //   });
-  //   aux.unshift({ label: "Todos", value: 0 });
-  //   setProvincias(aux);
-  // }
-  // }, []);
-
-  // useEffect(() => {
-  //   let aux = [];
-  //   if (provinciaOption > 0) {
-  //     aux = Region[provinciaOption - 1].municipios.map((i) => {
-  //       return { label: i, value: i };
-  //     });
-  //   }
-  //   aux.unshift({ label: "Todos", value: 0 });
-  //   setMunicipios(aux);
-  // }, [provinciaOption]);
+  const [areaOption, setAreaOption] = useState('Selecione un Área');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     api_ldap.Get_areas((data) => {
-      setAreas([{ name: "Selecione un Área" }, ...data]);
+      setAreas([{ name: 'Selecione un Área' }, ...data]);
     });
   }, []);
 
@@ -56,19 +30,19 @@ const Home = () => {
       query: searchQuery,
       area: areaOption,
     };
-    if (searchQuery === "") {
-      areaOption === ""
-        ? api_ldap.Get_all_users(params, searchCtx)
+    if (searchQuery === '') {
+      areaOption === 'Selecione un Área'
+        ? api_ldap.Get_all_users(searchCtx)
         : api_ldap.Get_users_by_area(params, searchCtx);
     } else {
       switch (selectedOption) {
-        case "ci":
+        case 'ci':
           api_ldap.Get_user_by_ci(params, searchCtx);
           break;
-        case "name":
+        case 'name':
           api_ldap.Get_user_by_name(params, searchCtx);
           break;
-        case "email":
+        case 'email':
           api_ldap.Get_user_by_email(params, searchCtx);
           break;
         default:
@@ -87,7 +61,6 @@ const Home = () => {
           <form className="flex flex-col mt-8" onSubmit={onSubmit}>
             <Search onChange={(value) => setSearchQuery(value)}>
               <Dropdown
-                // label="Seleccione el Área:"
                 options={areas}
                 clases="w-full mt-2 md:mt-0"
                 value={areaOption}
@@ -100,19 +73,19 @@ const Home = () => {
                   value="CI"
                   id="ci"
                   checked={selectedOption}
-                  onClick={() => setSelectedOption("ci")}
+                  onClick={() => setSelectedOption('ci')}
                 />
                 <RadioBtn
                   value="Nombre"
                   id="name"
                   checked={selectedOption}
-                  onClick={() => setSelectedOption("name")}
+                  onClick={() => setSelectedOption('name')}
                 />
                 <RadioBtn
                   value="Correo"
                   id="email"
                   checked={selectedOption}
-                  onClick={() => setSelectedOption("email")}
+                  onClick={() => setSelectedOption('email')}
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
@@ -142,11 +115,11 @@ const Home = () => {
             {searchCtx.isSearching ? (
               <button
                 type="submit"
-                class="flex flex-nowrap p-2.5 mx-8 md:ml-2 text-sm justify-center font-medium text-white bg-green-400 rounded-lg border border-green-400 hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-300 hover:cursor-not-allowed duration-[500ms,800ms]"
+                className="flex flex-nowrap p-2.5 mx-8 md:ml-2 text-sm justify-center font-medium text-white bg-green-400 rounded-lg border border-green-400 hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-300 hover:cursor-not-allowed duration-[500ms,800ms]"
                 disabled
               >
-                <div class="grid-1 my-auto h-5 w-5 mx-3 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div>
-                <div class="grid-2 my-auto -mx-1"> Buscando...</div>
+                <div className="grid-1 my-auto h-5 w-5 mx-3 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div>
+                <div className="grid-2 my-auto -mx-1"> Buscando...</div>
               </button>
             ) : (
               <button
