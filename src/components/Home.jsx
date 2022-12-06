@@ -1,53 +1,65 @@
 import { useContext, useEffect, useState } from 'react';
 import * as api_ldap from '../api/api_ldap';
 import SearchContext from '../context/SearchContext';
+import { Translator } from '../data/util';
 import Dropdown from './Dropdown';
 import Header from './Header';
 import HomeSkeleton from './HomeSkeleton';
-import RadioBtn from './RadioBtn';
 import Search from './Search';
 import Table from './Table';
 
 const Home = () => {
   const searchCtx = useContext(SearchContext);
   const [showTable, setShowTable] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('ci');
+  const [query, setQuery] = useState({
+    identification: '',
+    name: '',
+    lastname: '',
+    surname: '',
+    email: '',
+  });
   const [areas, setAreas] = useState(null);
-  const [areaOption, setAreaOption] = useState('Selecione un Área');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [areaOption, setAreaOption] = useState(0);
 
   useEffect(() => {
     api_ldap.Get_areas((data) => {
-      setAreas([{ name: 'Selecione un Área' }, ...data]);
+      setAreas([
+        { distinguishedName: '', name: 'Selecione un Área' },
+        ...areasRefactor(data),
+      ]);
     });
   }, []);
+
+  const areasRefactor = (areas) => {
+    let filterAreas = areas.filter((area) => {
+      if (area.distinguishedName.startsWith('OU')) {
+        area.name = Translator(area.name);
+        return true;
+      }
+      return false;
+    });
+    return filterAreas;
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
     searchCtx.startSearch();
     setShowTable(true);
     let params = {
-      query: searchQuery,
-      area: areaOption,
+      ...query,
+      area: areas[areaOption].distinguishedName,
     };
-    if (searchQuery === '') {
-      areaOption === 'Selecione un Área'
-        ? api_ldap.Get_all_users(searchCtx)
-        : api_ldap.Get_users_by_area(params, searchCtx);
+    if (
+      query.identification === '' &&
+      query.email === '' &&
+      query.name === '' &&
+      query.surname === '' &&
+      query.lastname === '' &&
+      areaOption === 0
+    ) {
+      api_ldap.Get_all_users(searchCtx);
     } else {
-      switch (selectedOption) {
-        case 'ci':
-          api_ldap.Get_user_by_ci(params, searchCtx);
-          break;
-        case 'name':
-          api_ldap.Get_user_by_name(params, searchCtx);
-          break;
-        case 'email':
-          api_ldap.Get_user_by_email(params, searchCtx);
-          break;
-        default:
-          break;
-      }
+      api_ldap.ExcSearch(params, searchCtx);
     }
   };
 
@@ -59,59 +71,14 @@ const Home = () => {
           <HomeSkeleton />
         ) : (
           <form className="flex flex-col mt-8" onSubmit={onSubmit}>
-            <Search onChange={(value) => setSearchQuery(value)}>
+            <Search formData={query} onChange={(values) => setQuery(values)}>
               <Dropdown
                 options={areas}
                 clases="w-full mt-2 md:mt-0"
                 value={areaOption}
-                onChange={(event) => setAreaOption(event.target.value)}
+                onChange={(event) => setAreaOption(event.target.selectedIndex)}
               />
             </Search>
-            <div className="">
-              <div className="grid grid-cols-3 mb-5 justify-items-center">
-                <RadioBtn
-                  value="CI"
-                  id="ci"
-                  checked={selectedOption}
-                  onClick={() => setSelectedOption('ci')}
-                />
-                <RadioBtn
-                  value="Nombre"
-                  id="name"
-                  checked={selectedOption}
-                  onClick={() => setSelectedOption('name')}
-                />
-                <RadioBtn
-                  value="Correo"
-                  id="email"
-                  checked={selectedOption}
-                  onClick={() => setSelectedOption('email')}
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
-                {/* <Dropdown
-                  label="Seleccione la Provincia:"
-                  options={provincias}
-                  value={provinciaOption}
-                  onChange={(event) => setProvinciaOption(event.target.value)}
-                  clases="mb-2 md:mb-0"
-                />
-                <Dropdown
-                  label="Seleccione el Municipio:"
-                  options={municipios}
-                  value={municipios[municipioOption]}
-                  onChange={(event) => setMunicipioOption(event.target.value)}
-                  clases="mb-2 md:mb-0"
-                /> */}
-                {/* <Dropdown
-                  label="Tipo de Usuario:"
-                  options={User_Type}
-                  value={userTypeOption}
-                  onChange={(event) => setUserTypeOption(event.target.value)}
-                  clases="mb-2 md:mb-0"
-                /> */}
-              </div>
-            </div>
             {searchCtx.isSearching ? (
               <button
                 type="submit"

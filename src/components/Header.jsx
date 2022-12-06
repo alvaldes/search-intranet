@@ -1,13 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import Dropdown from "./Dropdown_Menu";
+import React, { useState } from 'react';
+import Dropdown from './Dropdown_Menu';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   return (
     <header className="bg-white py-4 px-10 border-b-2 border-gray-100 flex justify-between">
       <div className="flex-shrink-0">
-        <a href="/" alt="logo">
+        <a href="http://intranet3.cujae.edu.cu/" alt="logo">
           <img
             className="mr-auto h-8"
             src="./logo512.png"
@@ -33,12 +32,47 @@ const Header = () => {
         </button>
         <ul className="items-center justify-end hidden md:flex">
           <li className="mr-9 relative inline-block hover:text-green-light">
-            <a className="" href="/">
+            <a className="" href="http://intranet3.cujae.edu.cu/">
               Inicio
             </a>
           </li>
           <li className="mr-9 relative inline-block">
-            <Dropdown title="Enlaces" items={["Revistas", "Sistemas"]} />
+            <Dropdown title="Enlaces">
+              <li
+                className="rounded-sm whitespace-nowrap cursor-pointer px-3 py-1 hover:bg-gray-100 hover:text-green-light"
+                key="edt"
+              >
+                <a
+                  className=""
+                  href="http://intranet3.cujae.edu.cu/index.php/enlaces/servicios"
+                >
+                  Entorno de Trabajo
+                </a>
+              </li>
+
+              <li
+                className="rounded-sm whitespace-nowrap cursor-pointer px-3 py-1 hover:bg-gray-100 hover:text-green-light"
+                key="revista"
+              >
+                <a
+                  className=""
+                  href="http://intranet3.cujae.edu.cu/index.php/enlaces/revistas"
+                >
+                  Revistas
+                </a>
+              </li>
+              <li
+                className="rounded-sm whitespace-nowrap cursor-pointer px-3 py-1 hover:bg-gray-100 hover:text-green-light"
+                key="sitiowww"
+              >
+                <a
+                  className=""
+                  href="http://intranet3.cujae.edu.cu/index.php/enlaces/sitios-web"
+                >
+                  Sitios Web
+                </a>
+              </li>
+            </Dropdown>
           </li>
           <li className="mr-9 relative inline-block text-green-light font-medium">
             <a className="" href="/">
@@ -46,25 +80,26 @@ const Header = () => {
             </a>
           </li>
           <li className="mr-9 relative hover:text-green-light inline-block">
-            <a className="" href="/">
+            <a
+              className=""
+              href="http://intranet3.cujae.edu.cu/index.php/quienes-somos"
+            >
               Quienes Somos
-            </a>
-          </li>
-          <li className="relative hover:text-green-light inline-block">
-            <a className="" href="/">
-              Acceder
             </a>
           </li>
         </ul>
       </nav>
-      <div className={`navbar-menu relative z-50 ${!open && "hidden"}`}>
+      <div className={`navbar-menu relative z-50 ${!open && 'hidden'}`}>
         <div
           className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"
           onClick={() => setOpen(false)}
         ></div>
         <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
           <div className="flex items-center mb-8">
-            <a className="mr-auto text-3xl font-bold leading-none" href="/">
+            <a
+              className="mr-auto text-3xl font-bold leading-none"
+              href="http://intranet3.cujae.edu.cu/"
+            >
               <img className="h-12" alt="logo" src="./logo512.png" />
             </a>
             <button className="navbar-close" onClick={() => setOpen(false)}>
@@ -89,23 +124,28 @@ const Header = () => {
               <li className="mb-1">
                 <a
                   className="block p-4 text-sm font-semibold hover:text-green-light"
-                  href="/"
+                  href="http://intranet3.cujae.edu.cu/"
                 >
                   Inicio
                 </a>
               </li>
               <li className="">
-                <a
-                  className="block p-4 text-sm font-semibold hover:text-green-light"
-                  href="/"
-                >
+                <span className="block p-4 text-sm font-semibold hover:text-green-light">
                   Enlaces
+                </span>
+              </li>
+              <li className="mb-3">
+                <a
+                  className="block pl-6 text-xs font-semibold hover:text-green-light"
+                  href="http://intranet3.cujae.edu.cu/index.php/enlaces/servicios"
+                >
+                  Entorno de Trabajo
                 </a>
               </li>
               <li className="mb-3">
                 <a
                   className="block pl-6 text-xs font-semibold hover:text-green-light"
-                  href="/"
+                  href="http://intranet3.cujae.edu.cu/index.php/enlaces/revistas"
                 >
                   Revistas
                 </a>
@@ -113,9 +153,9 @@ const Header = () => {
               <li className="mb-1">
                 <a
                   className="block pl-6 text-xs font-semibold hover:text-green-light"
-                  href="/"
+                  href="http://intranet3.cujae.edu.cu/index.php/enlaces/sitios-web"
                 >
-                  Sistemas
+                  Sitios Webs
                 </a>
               </li>
               <li className="mb-1 mt-2">
@@ -129,17 +169,9 @@ const Header = () => {
               <li className="mb-1">
                 <a
                   className="block p-4 text-sm font-semibold hover:text-green-light"
-                  href="/"
+                  href="http://intranet3.cujae.edu.cu/index.php/quienes-somos"
                 >
                   Quienes Somos
-                </a>
-              </li>
-              <li className="mb-1">
-                <a
-                  className="block p-4 text-sm font-semibold hover:text-green-light"
-                  href="/"
-                >
-                  Acceder
                 </a>
               </li>
             </ul>

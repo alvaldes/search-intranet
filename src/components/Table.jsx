@@ -1,6 +1,7 @@
-import { useState, useContext } from "react";
-import SearchContext from "../context/SearchContext";
-import Details from "./Details";
+import { useContext, useState } from 'react';
+import SearchContext from '../context/SearchContext';
+import { Translator } from '../data/util';
+import Details from './Details';
 
 const Table = () => {
   const searchCtx = useContext(SearchContext);
@@ -14,6 +15,15 @@ const Table = () => {
   const CloseDetails = () => {
     setDetailsData(null);
     setShowDetails(false);
+  };
+
+  const personType = (user) => {
+    if (user.personType === 'Student') {
+      return 'Estudiante';
+    } else if (user.personType === 'Worker' && 'studentYear' in user) {
+      return 'Trabajador & Estudiante';
+    }
+    return 'Trabajador';
   };
 
   if (searchCtx.isSearching) {
@@ -39,21 +49,19 @@ const Table = () => {
               {searchCtx.searchResults.map((i, index) => (
                 <tr className="table-row mb-2 sm:mb-0" key={index}>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 hidden lg:table-cell">
-                    {i.cUJAEPersonDNI || i.identification}
+                    {i.identification}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3">
                     {`${i.name} ${i.surname} ${i.lastname}`}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 hidden sm:table-cell">
-                    {i.mail || i.email}
+                    {i.email}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 hidden sm:table-cell">
-                    {i.teachingCategory ? "Trabajador" : "Estudiante"}
-                    {i.cUJAEPersonType === "Student" && `Estudiante`}
-                    {i.cUJAEPersonType === "Worker" && "Trabajador"}
+                    {personType(i)}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 hidden lg:table-cell">
-                    {i.area || i.distinguishedName.split(",")[1].slice(3)}
+                    {Translator(i.area)}
                   </td>
                   <td className="border-grey-light border whitespace-nowrap p-3 cursor-pointer">
                     <button

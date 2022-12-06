@@ -1,7 +1,7 @@
-import React from "react";
-import "./style.module.css";
+import React from 'react';
+import './style.module.css';
 
-const Dropdown_Menu = ({ title, items }) => {
+const Dropdown_Menu = ({ title, children }) => {
   return (
     <div className="group inline-block">
       <button className="flex items-center min-w-32">
@@ -23,16 +23,7 @@ const Dropdown_Menu = ({ title, items }) => {
         className="bg-white border rounded-md transform scale-0 group-hover:scale-100 absolute 
   transition duration-150 ease-in-out origin-top min-w-32 z-40"
       >
-        {items.map((item) => {
-          return (
-            <li
-              className="rounded-sm whitespace-nowrap cursor-pointer px-3 py-1 hover:bg-gray-100 hover:text-green-light"
-              key={item}
-            >
-              {item}
-            </li>
-          );
-        })}
+        {children}
       </ul>
     </div>
   );

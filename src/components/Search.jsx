@@ -1,35 +1,86 @@
-import React from "react";
+import { AiOutlineMail, AiOutlineNumber } from 'react-icons/ai';
+import { IoText } from 'react-icons/io5';
+import { VscWholeWord } from 'react-icons/vsc';
 
-const Search = ({ onChange, children }) => {
+const Search = ({ formData, onChange, children }) => {
   return (
-    <div className="flex items-center mb-4 px-3 md:px-0 flex-col md:flex-row">
-      <label htmlFor="simple-search" className="sr-only">
-        Search
-      </label>
+    <div className="grid items-center mb-4 px-3 md:px-0 grid-cols-1 md:grid-cols-2 gap-2">
       <div className="relative w-full">
         <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-          <svg
-            className="w-5 h-5 text-gray-500 dark:text-gray-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
+          <AiOutlineNumber className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+        </div>
+        <input
+          type="number"
+          id="search-ci"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+          placeholder="Carné de Idendidad"
+          onChange={(e) => {
+            formData.identification = e.target.value;
+            onChange(formData);
+          }}
+        />
+      </div>
+      <div className="relative w-full">
+        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <AiOutlineMail className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+        </div>
+        <input
+          type="email"
+          id="search-email"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+          placeholder="Correo CUJAE"
+          onChange={(e) => {
+            formData.email = e.target.value;
+            onChange(formData);
+          }}
+        />
+      </div>
+      <div className="relative w-full">
+        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <IoText className="w-5 h-5 text-gray-500 dark:text-gray-400" />
         </div>
         <input
           type="text"
-          id="simple-search"
+          id="search-name"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-          placeholder="Search"
-          onChange={(e) => onChange(e.target.value)}
+          placeholder="Nombre"
+          onChange={(e) => {
+            formData.name = e.target.value;
+            onChange(formData);
+          }}
         />
       </div>
       {children}
+      <div className="relative w-full">
+        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <VscWholeWord className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+        </div>
+        <input
+          type="text"
+          id="search-surname"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+          placeholder="Primer Apellido"
+          onChange={(e) => {
+            formData.surname = e.target.value;
+            onChange(formData);
+          }}
+        />
+      </div>
+      <div className="relative w-full">
+        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <VscWholeWord className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+        </div>
+        <input
+          type="text"
+          id="search-lastname"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+          placeholder="Segundo Apellido"
+          onChange={(e) => {
+            formData.lastname = e.target.value;
+            onChange(formData);
+          }}
+        />
+      </div>
     </div>
   );
 };
