@@ -84,7 +84,7 @@ const Header = () => {
               className=""
               href="http://intranet3.cujae.edu.cu/index.php/quienes-somos"
             >
-              Quienes Somos
+              Quiénes Somos
             </a>
           </li>
         </ul>

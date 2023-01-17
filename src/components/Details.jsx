@@ -57,14 +57,6 @@ const Details = ({ user, onClose }) => {
                 <AiFillIdcard className="inline text-2xl pb-0.5 mr-1" />
                 {user.identification}
               </p>
-              <p className="mt-3">
-                <MdLocationOn className="inline text-2xl pb-0.5 mr-1" />
-                {user.address}
-              </p>
-              <p className="">
-                <AiFillPhone className="inline text-2xl pb-0.5 mr-1" />
-                {user.phone}
-              </p>
               <p>
                 <MdEmail className="inline text-2xl pb-0.5 mr-1" />
                 {user.email}
