@@ -1,8 +1,15 @@
+import { useEffect, useRef } from 'react';
 import { AiOutlineMail, AiOutlineNumber } from 'react-icons/ai';
 import { IoText } from 'react-icons/io5';
 import { VscWholeWord } from 'react-icons/vsc';
 
 const Search = ({ formData, onChange, children }) => {
+  const inputCI = useRef(null);
+
+  useEffect(() => {
+    inputCI.current.focus();
+  }, []);
+
   return (
     <div className="grid items-center mb-4 px-3 md:px-0 grid-cols-1 md:grid-cols-2 gap-2">
       <div className="relative w-full">
@@ -12,6 +19,7 @@ const Search = ({ formData, onChange, children }) => {
         <input
           type="number"
           id="search-ci"
+          ref={inputCI}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
           placeholder="Carné de Idendidad"
           onChange={(e) => {

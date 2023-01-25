@@ -82,16 +82,16 @@ const Home = () => {
             {searchCtx.isSearching ? (
               <button
                 type="submit"
-                className="flex flex-nowrap p-2.5 mx-8 md:ml-2 text-sm justify-center font-medium text-white bg-green-400 rounded-lg border border-green-400 hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-300 hover:cursor-not-allowed duration-[500ms,800ms]"
+                className="flex flex-nowrap p-2.5 mx-8 md:ml-2 text-sm justify-center font-medium text-gray-800 bg-gray-300 rounded-lg border border-gray-300 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 hover:cursor-not-allowed duration-[500ms,800ms]"
                 disabled
               >
-                <div className="grid-1 my-auto h-5 w-5 mx-3 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div>
+                <div className="grid-1 my-auto h-5 w-5 mx-3 border-t-transparent border-solid animate-spin rounded-full border-gray-800 border-4"></div>
                 <div className="grid-2 my-auto -mx-1"> Buscando...</div>
               </button>
             ) : (
               <button
                 type="submit"
-                className="flex flex-nowrap p-2.5 mx-8 md:ml-2 text-sm justify-center font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
+                className="flex flex-nowrap p-2.5 mx-8 md:ml-2 text-sm justify-center font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-700"
               >
                 <svg
                   className="w-5 h-5"
