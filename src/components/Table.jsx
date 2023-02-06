@@ -9,7 +9,6 @@ const Table = () => {
   const [showDetails, setShowDetails] = useState(false);
   const [detailsData, setDetailsData] = useState(null);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage, setDataPerPage] = useState(6);
 
   const OpenDetails = (user) => {
@@ -33,7 +32,7 @@ const Table = () => {
   if (searchCtx.isSearching) {
     return null;
   } else {
-    const lastIndex = currentPage * dataPerPage;
+    const lastIndex = searchCtx.currentPage * dataPerPage;
     const firstIndex = lastIndex - dataPerPage;
     const currentData = searchCtx.searchResults.slice(firstIndex, lastIndex);
     return (
@@ -86,8 +85,10 @@ const Table = () => {
                   <Pagination
                     totalData={searchCtx.searchResults.length}
                     dataPerPage={dataPerPage}
-                    currentPage={currentPage}
-                    setCurrentPage={(uptPage) => setCurrentPage(uptPage)}
+                    currentPage={searchCtx.currentPage}
+                    setCurrentPage={(uptPage) => {
+                      searchCtx.setCurrentPage(uptPage);
+                    }}
                   />
                 </td>
               </tr>
