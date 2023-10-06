@@ -40,7 +40,6 @@ const Table = () => {
         <table className="inline-table w-full sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
           <thead className="text-gray-800">
             <tr className="bg-gray-800 text-white table-row">
-              <th className="p-3 text-left hidden lg:table-cell">CI</th>
               <th className="p-3 text-left">Nombre</th>
               <th className="p-3 text-left hidden sm:table-cell">Correo</th>
               <th className="p-3 text-left hidden sm:table-cell">
@@ -54,9 +53,6 @@ const Table = () => {
             <tbody className="flex-1 sm:flex-none">
               {currentData.map((i, index) => (
                 <tr className="table-row mb-2 sm:mb-0" key={index}>
-                  <td className="border-grey-light border hover:bg-gray-100 p-3 hidden lg:table-cell">
-                    {i.identification}
-                  </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3">
                     {`${i.name} ${i.surname} ${i.lastname}`}
                   </td>
