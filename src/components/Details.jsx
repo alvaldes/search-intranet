@@ -46,17 +46,9 @@ const Details = ({ user, onClose }) => {
               <h1 className="text-xl font-semibold text-gray-900 -mt-1 ml-2">
                 {`${user.name} ${user.surname} ${user.lastname}`}
               </h1>
-              <small className="mx-3 flex text-sm text-gray-800 font-medium">
-                <AiOutlineUser className="inline text-xl pb-0.5 mr-1" />
-                {user.user}
-              </small>
             </div>
             <hr />
             <div className="ml-4 mt-4 text-gray-700 text-sm">
-              <p className="">
-                <AiFillIdcard className="inline text-2xl pb-0.5 mr-1" />
-                {user.identification}
-              </p>
               <p>
                 <MdEmail className="inline text-2xl pb-0.5 mr-1" />
                 {user.email}
